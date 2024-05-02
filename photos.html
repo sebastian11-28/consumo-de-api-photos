@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <style>
+        body {
+            margin: 0; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background-color: #8c77c4;
+        }
+        #test {
+            width: 80%; 
+            text-align: center;
+            background-color: #c47171;
+            padding: 20px; 
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1); 
+            border-radius: 10px;
+            overflow:auto; 
+            max-height: 90vh; 
+        }
+        img {
+            max-width: 100%; 
+            height: auto; 
+        }
+    </style>
+</head>
+<body>
+    <div id="test"></div>
+    
+</body>
+<script>
+    const url = 'https://jsonplaceholder.typicode.com/photos';
+
+        async function fetchPost(){
+            const response =  await fetch(url); 
+            const body = await response.json();
+            let output = '<h2>Post</h2>';
+            body.forEach((post)=>{
+                output += `
+                    <div>
+                        <h3>${post.title}</h3>
+                        <img src=" ${post.url}"/>
+                    <div/>
+                `;
+            });
+             document.querySelector('#test').innerHTML = output;
+        }
+         fetchPost();
+</script>
+</html>
